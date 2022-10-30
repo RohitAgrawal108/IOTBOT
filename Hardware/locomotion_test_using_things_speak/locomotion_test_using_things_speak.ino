@@ -57,5 +57,28 @@ void loop()
                     Serial.println(line.substring(line.length()-1,line.length()));
             }
         // find the static data from the serverwebsite
+            int start_loc = find_text("<b>", line, 0);
+       int end_loc = find_text("<b>", line, 0);
+       if (start_loc > 0 && end_loc > 0)
+       {
+           Serial.println("****************");
+           Serial.println("subs: ");
+           for (int i = start_loc + 3; i < end_loc; i++)
+           {
+               Serial.print(line[i]);
+           }
+           int start_loc2 = find_text("<b>", line, end_loc + 1);
+           int end_loc2 = find_text("<b>", line, end_loc + 1);
+
+           if (start_loc2 > 0 && end_loc2 > 0)
+           {
+               Serial.println("views: ");
+               for (int i = start_loc2 + 3; i < end_loc2; i++)
+               {
+                   Serial.print(line[i]);
+               }
+           }
+           Serial.println("****************");
+
     }
 }
